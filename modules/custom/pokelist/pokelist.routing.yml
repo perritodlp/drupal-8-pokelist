@@ -1,0 +1,42 @@
+pokelist.list:
+  path: '/pokemon/list'
+  defaults:
+    _controller: '\Drupal\pokelist\Controller\PokelistController::pokemonList'
+    _title: 'Available Pokémon list'
+  requirements: 
+    _permission: 'access content'
+    _role: 'authenticated'
+  options:
+    no_cache: 'TRUE'    
+
+pokelist.settings:
+  path: '/admin/config/pokelist'
+  defaults:
+    _form: '\Drupal\pokelist\Form\ConfigForm'
+    _title: 'Pokelist API Settings'
+  requirements:
+    _permission: 'administer pokelist api'
+
+pokelist.favorites:
+  path: '/pokemon/favorites'
+  defaults:
+    _form: '\Drupal\pokelist\Form\FavoritesForm'
+    _title: 'Favorites Pokémon list'
+  requirements: 
+    _permission: 'access content'
+    _role: 'authenticated'    
+  options:
+    no_cache: 'TRUE' 
+
+pokelist.markasfavorite:
+  path: '/pokelist/ajax/markasfavorite'
+  defaults:
+    _controller: '\Drupal\pokelist\Controller\PokelistController::markAsFavoriteCallback'
+    _title: 'Mark a Pokémon as favorite'
+  requirements: 
+    _permission: 'access content'
+    _format: 'html'
+    _access: 'TRUE'    
+    _role: 'authenticated'    
+  options:
+    no_cache: 'TRUE'

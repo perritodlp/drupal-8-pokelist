@@ -1,0 +1,42 @@
+{% if info_pokemon %}
+    <!-- Pokemon Grid -->
+    <div id="poke-grid" class="pokemons-grid">
+        <div class="row">
+            <ul>
+                {% for item in info_pokemon %}
+                    <li>
+                        <a href="javascript:void(0)" data-id="{{ item.id }}">
+                            {% if not item.image %}
+                                <img src="{{ no_image_available }}" class="no-image-available" alt="{{ item.name }} -- {{ item.id }}" />
+                            {% else %}    
+                                <img src="{{ item.image }}" alt="{{ item.name }} -- {{ item.id }}" />
+                            {% endif %}    
+                            <br />{{ item.name }}
+                        </a>
+                    </li>    
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <!-- pager -->
+    <div class="center">
+        {% if pager %}
+            {{ pager }}
+        {% endif %}    
+    </div>
+
+    <div class="response-message"></div>
+
+    <!-- Pokemon comparison table -->
+    <h2 class="center">Comparison table</h2>
+
+    <div id="comparison-table" class="speciesContainer">
+        <p class="colorBlack center">Comparison table is empty. <br />Please click on two Pokémons to compare them.</p> 
+    </div>  
+
+{% else %}
+    <div>
+        Haven't found Pokemons
+    </div>
+{% endif %}

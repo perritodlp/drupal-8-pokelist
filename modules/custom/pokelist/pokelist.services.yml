@@ -1,0 +1,4 @@
+services:
+  pokelist.client:
+    class: '\Drupal\pokelist\Services\Client\PokelistClient'
+    arguments: ['@http_client', '@config.factory']    

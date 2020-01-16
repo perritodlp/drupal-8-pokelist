@@ -1,0 +1,19 @@
+pokelist:
+  version: 1.x
+  css:
+    layout:
+      css/pokelist.css: {}
+    theme:
+      css/pokelist.css: {}
+  js:
+    js/pokelist.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.ui
+    - core/jquery.once
+    - core/drupal.ajax
+    - core/drupal.dialog
+    - core/system
+    - core/drupal
+    - core/drupalSettings
+    - core/drupal.dialog.ajax

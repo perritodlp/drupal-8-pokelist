@@ -1,0 +1,98 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the pokelist module.
+ */
+
+/**
+ * Implements hook_install().
+ *
+ * Creates some default entries on this module custom table.
+ *
+ * @see hook_install()
+ *
+ * @ingroup pokelist
+ */
+function pokelist_install() {
+  // Insert some example data into our schema.
+  $entries = [
+    [
+      'uid' => 7,
+      'pokemon_name' => 'pickachu',
+      'pokemon_id' => 25,
+      'created_at' => '2020-01-07 00:05:00'
+    ],
+    [
+      'uid' => 7,
+      'pokemon_name' => 'marshadowo',
+      'pokemon_id' => 802,
+      'created_at' => '2020-01-07 00:05:00'
+    ],
+    [
+      'uid' => 7,
+      'pokemon_name' => 'rotom-fan',
+      'pokemon_id' => 10011,
+      'created_at' => '2020-01-07 00:05:00'
+    ],    
+  ];
+
+  $connection = \Drupal::database();
+  foreach ($entries as $entry) {
+    $connection->insert('pokd8_pokemon_favorites')->fields($entry)->execute();
+  }
+}
+
+/**
+ * Implements hook_schema().
+ *
+ * Defines the database tables used by this module.
+ *
+ * @see hook_schema()
+ *
+ * @ingroup pokelist
+ */
+function pokelist_schema() {
+  $schema['pokd8_pokemon_favorites'] = [
+    'description' => 'Stores pokemon favorites for a user.',
+    'fields' => [
+      'pfid' => [
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => 'Primary Key: Unique pokemon favorite ID.',
+      ],
+      'uid' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => "Creator user's {users}.uid",
+      ],
+      'pokemon_name' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Name of the pokemon.',
+      ],
+      'created_at' => [
+        'type' => 'varchar',
+        'mysql_type' => 'datetime',
+        'not null' => TRUE,
+        'description' => 'Creation date.',
+      ],
+      'pokemon_id' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'size' => 'small',
+        'description' => 'The pokemon ID.',
+      ],
+    ],
+    'primary key' => ['pfid'],
+    'indexes' => [
+      'uid' => ['uid']
+    ],
+  ];
+
+  return $schema;
+}

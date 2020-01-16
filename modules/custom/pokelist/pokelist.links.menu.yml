@@ -1,0 +1,16 @@
+pokelist.list:
+  title: Pokémon List
+  route_name: pokelist.list
+  hidden: 0
+
+pokelist.favorites:
+  title: Favorites Pokémon list
+  route_name: pokelist.favorites
+  hidden: 0  
+
+pokelist.settings:
+  title: 'Pokelist API Settings'
+  description: 'Pokelist API settings'
+  parent: system.admin_config_services
+  route_name: pokelist.settings
+  weight: 100
